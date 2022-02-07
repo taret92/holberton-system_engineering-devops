@@ -1,4 +1,4 @@
-This is a repository for practice scripts and content
+This is a repository for practice scripts and content this
 
 0. script that prints the absolute path name of the current working directory.
 1. script that display the contents list of your current directory.
