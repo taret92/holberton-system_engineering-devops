@@ -1,2 +1,2 @@
 #!/bin/bash
-find -name "*.jsc" delete 
+find -name "*.jsc" type -f delete 
