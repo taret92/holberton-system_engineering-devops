@@ -1,2 +1,2 @@
 #!/bin/bash
-find /etc/passwd iname pattern "root"  
+grep 'root' /etc/passwd  
