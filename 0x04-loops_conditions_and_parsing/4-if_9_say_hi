@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times
+
+i=0
+
+
+while [ "$i" -lt 10 ]; do
+	echo Best School
+	i=$(("$i" + 1))
+	if [[ "$i" -eq 9 ]]; then
+		echo 'Hi'
+		echo 'Best School'
+		break
+	fi
+done
