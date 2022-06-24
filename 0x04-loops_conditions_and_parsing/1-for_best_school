@@ -1,0 +1,6 @@
+#!/usr/bin/env
+
+for (( c=1; c<=10; c++ ))
+do
+    echo "Holberton School"
+done
