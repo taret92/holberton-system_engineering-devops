@@ -7,4 +7,3 @@ while [ $i -lt 10 ]
     echo "Best School"
     ((i++))
  done
- 
