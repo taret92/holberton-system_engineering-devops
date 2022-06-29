@@ -7,3 +7,4 @@
  echo Best Schools
  ((counter++))
  done
+ 
