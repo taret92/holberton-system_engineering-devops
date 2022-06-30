@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ping
-IP_ADDRESS= 8.8.8.8
+$IP_ADDRESS= $1
 if [ "$IP_ADDRESS" == "" ];
 then
 	    echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
