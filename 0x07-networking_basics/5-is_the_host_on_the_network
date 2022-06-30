@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # ping
-$IP_ADDRESS= $1
-if [ "$IP_ADDRESS" == "" ];
+if [[ $1 -eq 0 ]]
 then
-	    echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
-    else
-	        ping -c 5 "$IP_ADDRESS"
+    echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+else
+    ping -c 5 "$1"
 fi
