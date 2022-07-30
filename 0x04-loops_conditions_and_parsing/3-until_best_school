@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-#display Best School 10 times
- counter=0
-
- until [ $counter -gt 10 ]
- do
- echo Best Schools
- ((counter++))
- done
- 
+# This script is displaying "Best School" 10 times with until loop.
+max=1
+# -lt es "menor que"
+until [ 10 -lt $max ]
+do
+  echo "Best School"
+  ((max++))
+done

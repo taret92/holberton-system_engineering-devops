@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
-# This script display bad luck and good luck
+# Bash script that loops from 1 to 10 and displays three phrases
+contador=1
+while [ $contador -le 10 ]
+do
+  if [[ "$contador" == '4' ]]
+  then
+    echo "bad luck"
+    ((contador++))
+    continue
 
-i=0
+  elif [[ "$contador" == '8' ]]
+  then
+    echo "good luck"
+    ((contador++))
+    continue
 
-
-while [ "$i" -lt 10 ]; do
-	echo "Best School"
-	i=$(("$i" + 1))
-	if [ "$i" = 4 ] 
-    then
-		echo 'bad luck'
-	elif [ "$i" = 8 ] 
-    then 
-        echo 'good luck'
-	else
-        echo "Best School"
-    fi
+  else
+  echo "Best School"
+  ((contador++))
+  fi
 done

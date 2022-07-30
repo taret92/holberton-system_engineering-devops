@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# This script is displaying numbers to 10 with messages
+# Bash script that displays The content of the current directory
+list=$(ls)
 
-
-files="$(ls)"
-for file in $files;
+for file in $list
 do
-    echo "$file" | cut -d "-" -f2
+  echo "${file//*-}"
 done
