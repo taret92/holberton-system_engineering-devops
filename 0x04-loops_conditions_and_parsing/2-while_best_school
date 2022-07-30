@@ -1,10 +1,5 @@
-#!/usr/bin/env bash
-#display 10 times best school
-
-i=0
-while [ $i -lt 10 ]
- do
-    echo "Best School"
-    ((i++))
- done
- 
+#!/usr/bin/python3
+def uniq_add(my_list=[]):
+    new_list = set(my_list)
+    total = sum(new_list)
+    return total
