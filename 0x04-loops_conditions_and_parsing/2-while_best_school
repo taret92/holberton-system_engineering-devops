@@ -1,5 +1,9 @@
-#!/usr/bin/python3
-def uniq_add(my_list=[]):
-    new_list = set(my_list)
-    total = sum(new_list)
-    return total
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times with while loop
+contador=9
+# -ge es mayor o igual
+while [ $contador -ge 0 ]
+do
+  echo "Best School"
+  ((contador--))
+done
