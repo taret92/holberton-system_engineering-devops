@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+# this script:
+# 1 Install nginx
+# 2 When querying Nginx at its root /
+# with a GET request (requesting a page)
+# using curl, it must return a page that
+# contains the string "Hello World"
+# nginx default name are in dir html:
+# index, index.html, index.htm, index.nginx-debian.html;
 sudo apt-get -y update
 sudo apt-get -y install nginx
 echo "Hello World" > /var/www/html/index.html
