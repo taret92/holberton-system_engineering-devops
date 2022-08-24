@@ -1,5 +1,13 @@
-# Manifest to connect to a server without typing a password.
-exec { 'SSH client configuration':
-  command => [ 'eval "$(ssh-agent)"', 'ssh-add' ],
-  path    => [ '/bin', '/sbin' ],
-}
+# Puppet to make changes to our configuration file
+
+file_line { 'sudo_rule':
+      ensure => 'present',
+      path   => '/etc/ssh/ssh_config',
+      line   =>'IdentityFile ~/.ssh/school',
+    }
+
+    file_line { 'sudo_rule_nopw':
+      ensure => 'present',
+      path   => '/etc/ssh/ssh_config',
+      line   => 'PasswordAuthentication no',
+    }
