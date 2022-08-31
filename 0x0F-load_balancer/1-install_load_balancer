@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# Script to install a load balancer.
-sudo apt-get update
+# this script: Install and configure HAproxy on your lb-01 server.
+# video clave: https://www.youtube.com/watch?v=7ljiOD6MbLA&ab_channel=codigofacilito
+sudo apt-get -y update
 sudo apt-get -y install haproxy
-sudo echo "
-listen firstbalance
-    bind *:80
-    balance roundrobin
-    server 4597-web-01 54.160.177.42:80 check
-    server 4597-web-02 54.196.171.56:80 check" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+new_string="frontend http_front\n\t bind *:80\n\t default_backend http_back\n backend http_back\n\t balance roundrobin\n\t server 4597-web-01 54.160.177.42\n\t server 4597-web-02 54.196.171.56"
+string_to_replace="errorfile 504"
+sudo sed -i "/$string_to_replace/ a $new_string" /etc/haproxy/haproxy.cfg
 sudo service haproxy restart
