@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # this script: Install and configure HAproxy on your lb-01 server.
-# video clave: https://www.youtube.com/watch?v=7ljiOD6MbLA&ab_channel=codigofacilito
 sudo apt-get -y update
 sudo apt-get -y install haproxy
 
