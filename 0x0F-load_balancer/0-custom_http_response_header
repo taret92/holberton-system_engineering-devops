@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-# Configure the Nginx server with redirect, 404 and header response.
-sudo apt-get update
+# this script install nginx
+
+sudo apt-get -y update
 sudo apt-get -y install nginx
-sudo touch /var/www/html/index.html
-sudo chown -R "$USER":"$USER" /var/www//html/index.html 
 echo "Hello World" > /var/www/html/index.html
-sudo touch /var/www/html/error404.html
-sudo chown ubuntu /var/www/html/error404.html
-echo "Ceci n'est pas une page" > /var/www/html/error404.html
-sudo sed -i "s/server_name _;/server_name _;\n\tadd_header X-Served-By $HOSTNAME;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;\n\terror_page 404 \/error404.html;\n\tlocation = \/error404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
-service nginx start
-sudo nginx -t
-sudo service nginx reload
+echo "Ceci n'est pas une page" > /var/www/html/error.html
+new_string_1="error_page 404 /error.html;\n location = /error.html {\n root /var/www/html;\n internal;\n}"
+new_string_2="rewrite ^/redirect_me https://www.google.com permanent;"
+new_string_3="add_header X-Served-By $HOSTNAME;"
+string_to_replace="# as directory, then fall back to displaying a 404."
+sudo sed -i "/$string_to_replace/ a $new_string_1" /etc/nginx/sites-enabled/default
+sudo sed -i "/$string_to_replace/ a $new_string_2" /etc/nginx/sites-enabled/default
+sudo sed -i "/$string_to_replace/ a $new_string_3" /etc/nginx/sites-enabled/default
+sudo service nginx start
