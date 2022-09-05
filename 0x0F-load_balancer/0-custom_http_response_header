@@ -1,15 +1,35 @@
 #!/usr/bin/env bash
-# this script install nginx
+# Redirect
+SU=$(whoami)
+DIR="/etc/nginx/sites-available/default"
+NEW_URL="https://www.google.com/"
+OLD_URL="/redirect_me"
+REDIRECT="\tlocation ${OLD_URL} {\n\t\treturn 301 ${NEW_URL};\n\t}"
+DIR_SERVER="/var/www/html/"
+ERROR404="server {\n\terror_page 404 \/error404.html;"
+HTTPHEAD="\n\tadd_header  X-Served-By  $(hostname);\n\n"
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World" > /var/www/html/index.html
-echo "Ceci n'est pas une page" > /var/www/html/error.html
-new_string_1="error_page 404 /error.html;\n location = /error.html {\n root /var/www/html;\n internal;\n}"
-new_string_2="rewrite ^/redirect_me https://www.google.com permanent;"
-new_string_3="add_header X-Served-By $HOSTNAME;"
-string_to_replace="# as directory, then fall back to displaying a 404."
-sudo sed -i "/$string_to_replace/ a $new_string_1" /etc/nginx/sites-enabled/default
-sudo sed -i "/$string_to_replace/ a $new_string_2" /etc/nginx/sites-enabled/default
-sudo sed -i "/$string_to_replace/ a $new_string_3" /etc/nginx/sites-enabled/default
-sudo service nginx start
+if [[ "$SU" == "root" ]]; then
+SU="sudo"
+else
+echo "your need run with prefix sudo"
+exit
+fi
+
+$SU usermod -aG $SU "$(whoami)"
+if [ ! -x /usr/sbin/nginx ]; then
+    $SU apt -y update
+    $SU apt install -y --allow-downgrades nginx
+    $SU ufw allow 'Nginx HTTP'
+fi
+
+
+$SU mkdir --parents "${DIR_SERVER}"
+$SU echo "Hello World" > "${DIR_SERVER}index.html"
+$SU echo "Ceci n'est pas une page" > "${DIR_SERVER}error.html"
+
+
+
+$SU sed -i "/server_name _;/ a\\${REDIRECT}\n\t${HTTPHEAD}" $DIR
+$SU sed -i "s/^server\s{/$ERROR404/1" $DIR
+$SU service nginx restart

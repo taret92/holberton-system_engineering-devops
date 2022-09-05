@@ -3,7 +3,7 @@
 
 sub_info () {
     
-    if [ "$#" -eq 2 ]; then #si los argumentos son 2
+    if [ "$#" -eq 2 ]; then
         dig www.$1 | grep -A1 'ANSWER SECTION:' | awk '/IN/ {printf "The subdomain www is a %s record and points to %s\n", $4, $5}'
     elif [ "$#" -eq 1 ]; then
         dig www.$1 | grep -A1 'ANSWER SECTION:' | awk '/IN/ {printf "The subdomain www is a %s record and points to %s\n", $4, $5}'
