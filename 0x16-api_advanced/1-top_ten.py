@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 '''pycode'''
 
-
 import requests
-
 
 def top_ten(subreddit):
     '''def'''

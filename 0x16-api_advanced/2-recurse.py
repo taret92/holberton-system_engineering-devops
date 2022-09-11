@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 '''pycode'''
 
-
 import requests
-
 
 def recurse(subreddit, hot_list=[]):
     '''def'''
