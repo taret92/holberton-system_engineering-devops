@@ -9,11 +9,11 @@ import sys
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
-    user = '{}users/{}'.format(url, sys.argv[1])
-    r = requests.get(user)
+    name_user = '{}users/{}'.format(url, sys.argv[1])
+    r = requests.get(name_user)
     r_json = r.json()
     print("Employee {} is done with tasks".format(r_json.get('name')), end="")
-    r = requests.get(url + 'todos', params={'userId': sys.argv[1]})
+    r = requests.get(url + 'all', params={'userId': sys.argv[1]})
     tasks = r.json()
     task_list = []
     for task in tasks:
