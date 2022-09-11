@@ -9,8 +9,8 @@ if __name__ == "__main__":
     '''
     finds, formats, outputs data from api
     '''
-    done_list = []
-    count = 0
+    todos_done_list = []
+    todos_count = 0
     employee_id = int(sys.argv[1])
     employees = requests.get('https://jsonplaceholder.typicode.com/users/{}'
                              .format(employee_id))
@@ -20,12 +20,12 @@ if __name__ == "__main__":
                 .format(employee_id))
     task_list = all_tasks.json()
 
-    count = len(task_list)
+    todos_count = len(task_list)
     for task in task_list:
         if task.get('completed') is True:
-            done_list.append(task.get('title'))
-        done = len(done_list)
+            todos_done_list.append(task.get('title'))
+        todos_done = len(todos_done_list)
     print('Employee {} is done with tasks({}/{}):'
-          .format(name, done, count))
-    for item in done_list:
+          .format(name, todos_done, todos_count))
+    for item in todos_done_list:
         print('\t {}'.format(item))
